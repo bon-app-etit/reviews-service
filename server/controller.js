@@ -1,7 +1,8 @@
 
 module.exports = {
   getReviews: (req, res) => {
-    db.readAllReviews((err, reviews) => {
+    const { name } = req.params;
+    db.readAllReviews(name, (err, reviews) => {
       if (err) {
         console.log('controller error: getReviews');
         res.status(500).end();
@@ -11,7 +12,8 @@ module.exports = {
     });
   },
   postReview: (req, res) => {
-    db.createReview(req.body, (err, results) => {
+    const { name } = req.parmas;
+    db.createReview(name, req.body, (err, results) => {
       if (err) {
         console.log('controller error: postReview');
         res.status(500);
@@ -21,7 +23,8 @@ module.exports = {
     });
   },
   putReview: (req, res) => {
-    db.updateReview(req.body, (err, results) => {
+    const { id } = req.params;
+    db.updateReview(id, req.body, (err, results) => {
       if (err) {
         console.log('controller error: putReview');
         res.status(500);
@@ -31,7 +34,8 @@ module.exports = {
     });
   },
   deleteReview: (req, res) => {
-    db.deleteReview(req.body, (err, results) => {
+    const { id } = req.params;
+    db.deleteReview(id, (err, results) => {
       if (err) {
         console.log('controller error: deleteReview');
         res.status(500);
@@ -41,7 +45,8 @@ module.exports = {
     });
   },
   getUser: (req, res) => {
-    db.readUser((err, user) => {
+    const { id } = req.params;
+    db.readUser(id, (err, user) => {
       if (err) {
         console.log('controller error: getUser');
         res.status(500).end();
@@ -61,7 +66,8 @@ module.exports = {
     });
   },
   putUser: (req, res) => {
-    db.updateUser(req.body, (err, results) => {
+    const { id } = req.params;
+    db.updateUser(id, req.body, (err, results) => {
       if (err) {
         console.log('controller error: putUser');
         res.status(500);
@@ -71,7 +77,8 @@ module.exports = {
     });
   },
   deleteUser: (req, res) => {
-    db.deleteUser(req.body, (err, results) => {
+    const { id } = req.params;
+    db.deleteUser(id, (err, results) => {
       if (err) {
         console.log('controller error: deleteUser');
         res.status(500);
