@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.get('/restaurant/:name/reviews', controller.getReviews);
 
 // Create a review
-app.post('/restaurant/:name/review', controller.postReview);
+app.post('/restaurant/:restaurant_id/user/:user_id/review', controller.postReview);
 
 // Update a review
 app.put('/review/:id', controller.putReview);
