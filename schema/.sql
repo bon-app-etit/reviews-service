@@ -36,9 +36,6 @@ CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
       rating INTEGER NOT NULL,
       review_date TIMESTAMP NOT NULL,
       review_text VARCHAR NOT NULL,
-      user_voted_cool INTEGER REFERENCES users(id),
-      user_voted_funny INTEGER REFERENCES users(id),
-      user_voted_useful INTEGER REFERENCES users(id),
       previous_review INTEGER REFERENCES reviews(id)
     )
     CREATE TABLE photos(
@@ -47,8 +44,6 @@ CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
       review_id INTEGER REFERENCES reviews(id) NOT NULL,
       photo_url VARCHAR NOT NULL,
       photo_text VARCHAR,
-      user_voted_helpful INTEGER REFERENCES users(id),
-      user_voted_unhelpful INTEGER REFERENCES users(id)
     )
     CREATE TABLE business_replies(
       id SERIAL PRIMARY KEY,
@@ -56,4 +51,17 @@ CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
       name VARCHAR NOT NULL,
       reply_date TIMESTAMP NOT NULL,
       reply_text VARCHAR NOT NULL
+    )
+    CREATE TABLE reviews_users_votes(
+      review_id INTEGER REFERENCES reviews(id) NOT NULL,
+      user_id INTEGER REFERENCES users(id) NOT NULL,
+      voted_cool BOOLEAN NOT NULL,
+      voted_funny BOOLEAN NOT NULL,
+      voted_useful BOOLEAN NOT NULL
+    )
+    CREATE TABLE photos_users_votes(
+      photo_id INTEGER REFERENCES photos(id),
+      user_id INTEGER REFERENCES users(id),
+      voted_helpful BOOLEAN NOT NULL,
+      voted_unhelpful BOOLEAN NOT NULL
     )
