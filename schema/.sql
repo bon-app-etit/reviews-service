@@ -26,7 +26,7 @@ CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
       zip INTEGER NOT NULL,
       review_count INTEGER NOT NULL,
       cuisine_type VARCHAR NOT NULL,
-      phone_number INTEGER NOT NULL,
+      phone_number VARCHAR NOT NULL,
       website VARCHAR
     )
     CREATE TABLE reviews(
