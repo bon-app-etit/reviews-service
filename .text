@@ -1,0 +1,1 @@
+SELECT cluster_name, listen_address FROM system.local;

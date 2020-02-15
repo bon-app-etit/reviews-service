@@ -1,8 +1,8 @@
 
 module.exports = {
   getReviews: (req, res) => {
-    const { name } = req.params;
-    db.readAllReviews(name, (err, reviews) => {
+    const { id } = req.params;
+    db.readAllReviews(id, (err, reviews) => {
       if (err) {
         console.log('controller error: getReviews');
         res.status(500).end();

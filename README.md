@@ -2,21 +2,21 @@
 
 ## API Documentation
 
-* **URL**: _/restaurants/:name/reviews_
+* **URL**: _/restaurants/:id/reviews_
   * **Notes:** Route to handle retrieving all reviews for a single restaurant
   * **Method:** _`GET`_
-  * **URL Params:** `name=[string]`
-  * **Returns:**
+  * **URL Params:** `id=[integer]`
+  * **Response Body:**
 ```javascript
 reviews = [
   {
-    id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    restaurant_id: INT NOT NULL,
-    rating: INT NOT NULL,
-    review_date: STRING NOT NULL,
-    review_text: STRING NOT NULL,
-    previous_review: INT
+    id: integer,
+    user_id: integer,
+    restaurant_id: integer,
+    rating: integer,
+    review_date: string,
+    review_text: string,
+    previous_review: integer
   },
 ]
 ```
@@ -28,29 +28,25 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    user_id: INT NOT NULL,
-    restaurant_id: INT NOT NULL,
-    rating: INT NOT NULL,
-    review_date: STRING NOT NULL,
-    review_text: STRING NOT NULL,
-    previous_review: INT
+    user_id: integer,
+    restaurant_id: integer,
+    rating: integer,
+    review_date: string,
+    review_text: string,
+    previous_review: integer
   }
 ```
 
 * **URL**: _/review/:id_
   * **Notes:** Route to handle updating a given review
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `id=[integer]`
   * **Request Body:**
 ```javascript
   {
-    id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    restaurant_id: INT NOT NULL,
-    rating: INT NOT NULL,
-    review_date: STRING NOT NULL,
-    review_text: STRING NOT NULL,
-    previous_review: INT
+    rating: integer,
+    review_text: string,
+    previous_review: integer
   }
 ```
 
@@ -58,7 +54,7 @@ reviews = [
   * **Notes:** Route to handle delete a given review
   * **Method:** _`DELETE`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -67,19 +63,19 @@ reviews = [
   * **Notes:** Route to handle retrieving a given user
   * **Method:** _`GET`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   {
-    id: INT NOT NULL,
-    name: STRING NOT NULL,
-    profile_pic: STRING,
-    profile_url: STRING NOT NULL,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    creation_date: STRING NOT NULL,
-    friends_count: INT NOT NULL,
-    photos_count: INT NOT NULL,
-    elite_year: INT
+    id: integer,
+    name: string,
+    profile_pic: string,
+    profile_url: string,
+    city: string,
+    state: string,
+    creation_date: string,
+    friends_count: integer,
+    photos_count: integer,
+    elite_year: integer
   }
 ```
 
@@ -90,11 +86,15 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    name: STRING NOT NULL,
-    profile_pic: STRING,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    creation_date: STRING NOT NULL,
+    name: string,
+    profile_pic: string,
+    profile_url: string,
+    city: string,
+    state: string,
+    creation_date: string,
+    friends_count: integer,
+    photos_count: integer,
+    elite_year: integer
   }
 ```
 
@@ -105,16 +105,16 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    id: INT NOT NULL,
-    name: STRING NOT NULL,
-    profile_pic: STRING,
-    profile_url: STRING NOT NULL,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    creation_date: STRING NOT NULL,
-    friends_count: INT NOT NULL,
-    photos_count: INT NOT NULL,
-    elite_year: INT
+    id: integer,
+    name: string,
+    profile_pic: string,
+    profile_url: string,
+    city: string,
+    state: string,
+    creation_date: string,
+    friends_count: integer,
+    photos_count: integer,
+    elite_year: integer
   }
 ```
 
@@ -122,7 +122,7 @@ reviews = [
   * **Notes:** Route to handle deleting a given user
   * **Method:** _`DELETE`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -131,15 +131,15 @@ reviews = [
   * **Notes:** Route to handle getting all photos for a given review
   * **Method:** _`GET`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   photos = [
     {
-      id: INT NOT NULL,
-      user_id: INT NOT NULL,
-      review_id: INT NOT NULL,
-      photo_url: STRING NOT NULL,
-      photo_text: STRING
+      id: integer,
+      user_id: integer,
+      review_id: integer,
+      photo_url: string,
+      photo_text: string
     }
   ]
 ```
@@ -151,25 +151,22 @@ reviews = [
   * **Requst Body:**
 ```javascript
   {
-    user_id: INT NOT NULL,
-    review_id: INT NOT NULL,
-    photo_url: STRING NOT NULL,
-    photo_text: STRING
+    user_id: integer,
+    review_id: integer,
+    photo_url: string,
+    photo_text: string
   }
 ```
 
 * **URL**: _/photo/:id_
   * **Notes:** Route to handle updating a photo for a given review
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `id=[integer]`
   * **Request Body:**
 ```javascript
     {
-      id: INT NOT NULL,
-      user_id: INT NOT NULL,
-      review_id: INT NOT NULL,
-      photo_url: STRING NOT NULL,
-      photo_text: STRING
+      photo_url: string,
+      photo_text: string
     }
 ```
 
@@ -177,7 +174,7 @@ reviews = [
   * **Notes:** Route to handle deleting a photo for a given review
   * **Method:** _`DELETE`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -186,14 +183,16 @@ reviews = [
   * **Notes:** Route to handle getting a business reply for a given review
   * **Method:** _`GET`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
     {
-      id: INT NOT NULL,
-      review_id: INT NOT NULL,
-      name: STRING NOT NULL,
-      reply_date: STRING NOT NULL,
-      reply_text: STRING NOT NULL
+      id: integer,
+      review_id: integer,
+      name: string,
+      business_position: string,
+      business_avatar: string,
+      reply_date: string,
+      reply_text: string
     }
 ```
 
@@ -204,25 +203,27 @@ reviews = [
   * **Request Body:**
 ```javascript
     {
-      review_id: INT NOT NULL,
-      name: STRING NOT NULL,
-      reply_date: STRING NOT NULL,
-      reply_text: STRING NOT NULL
+      review_id: integer,
+      name: string,
+      business_position: string,
+      business_avatar: string,
+      reply_date: string,
+      reply_text: string
     }
 ```
 
 * **URL**: _/business_reply/:id_
   * **Notes:** Route to handle updating a business reply for a given review
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `id=[integer]`
   * **Request Body:**
 ```javascript
     {
-      id: INT NOT NULL,
-      review_id: INT NOT NULL,
-      name: STRING NOT NULL,
-      reply_date: STRING NOT NULL,
-      reply_text: STRING NOT NULL
+      name: string,
+      business_position: string,
+      business_avatar: string,
+      reply_date: string,
+      reply_text: string
     }
 ```
 
@@ -230,7 +231,7 @@ reviews = [
   * **Notes:** Route to handle deleting a business reply for a given review
   * **Method:** _`DELETE`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -239,20 +240,20 @@ reviews = [
   * **Notes:** Route to handle getting a restaurant
   * **Method:** _`GET`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   {
-    id: INT NOT NULL,
-    name: STRING NOT NULL,
-    address_1: STRING NOT NULL,
-    address_2: STRING NOT NULL,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    zip: INT NOT NULL,
-    review_count: INT NOT NULL,
-    cuisine_type: STRING NOT NULL,
-    phone_number: STRING NOT NULL,
-    website: STRING NOT NULL
+    id: integer,
+    name: string,
+    address_1: string,
+    address_2: string,
+    city: string,
+    state: string,
+    zip: integer,
+    review_count: integer,
+    cuisine_type: string,
+    phone_number: string,
+    website: string
   }
 ```
 
@@ -263,16 +264,16 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    name: STRING NOT NULL,
-    address_1: STRING NOT NULL,
-    address_2: STRING NOT NULL,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    zip: INT NOT NULL,
-    review_count: INT NOT NULL,
-    cuisine_type: STRING NOT NULL,
-    phone_number: STRING NOT NULL,
-    website: STRING NOT NULL
+    name: string,
+    address_1: string,
+    address_2: string,
+    city: string,
+    state: string,
+    zip: integer,
+    review_count: integer,
+    cuisine_type: string,
+    phone_number: string,
+    website: string
   }
 ```
 
@@ -283,17 +284,17 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    id: INT NOT NULL,
-    name: STRING NOT NULL,
-    address_1: STRING NOT NULL,
-    address_2: STRING NOT NULL,
-    city: STRING NOT NULL,
-    state: STRING NOT NULL,
-    zip: INT NOT NULL,
-    review_count: INT NOT NULL,
-    cuisine_type: STRING NOT NULL,
-    phone_number: STRING NOT NULL,
-    website: STRING NOT NULL
+    id: integer,
+    name: string,
+    address_1: string,
+    address_2: string,
+    city: string,
+    state: string,
+    zip: integer,
+    review_count: integer,
+    cuisine_type: string,
+    phone_number: string,
+    website: string
   }
 ```
 
@@ -301,7 +302,7 @@ reviews = [
   * **Notes:** Route to handle deleting a restaurant
   * **Method:** _`DELETE`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -310,15 +311,15 @@ reviews = [
   * **Notes:** Route to handle getting all votes for a review
   * **Method:** _`GET`_
   * **URL Params:** `id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   votes = [
     {
-      review_id: INT NOT NULL,
-      user_id: INT NOT NULL,
-      voted_cool: BOOLEAN NOT NULL,
-      voted_funny: BOOLEAN NOT NULL,
-      voted_useful BOOLEAN NOT NULL
+      review_id: integer,
+      user_id: integer,
+      voted_cool: boolean,
+      voted_funny: boolean,
+      voted_useful: boolean
     },
   ]
 ```
@@ -330,26 +331,24 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    review_id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    voted_cool: BOOLEAN NOT NULL,
-    voted_funny: BOOLEAN NOT NULL,
-    voted_useful BOOLEAN NOT NULL
+    review_id: integer,
+    user_id: integer,
+    voted_cool: boolean,
+    voted_funny: boolean,
+    voted_useful: boolean
   }
 ```
 
 * **URL**: _/review/:review_id/user/:user_id/votes_
   * **Notes:** Route to handle updating votes from a user for a review
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `review_id=[integer], user_id=[integer]`
   * **Request Body:**
 ```javascript
   {
-    review_id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    voted_cool: BOOLEAN NOT NULL,
-    voted_funny: BOOLEAN NOT NULL,
-    voted_useful BOOLEAN NOT NULL
+    voted_cool: boolean,
+    voted_funny: boolean,
+    voted_useful: boolean
   }
 ```
 
@@ -357,7 +356,7 @@ reviews = [
   * **Notes:** Route to handle deleting votes from a user for a review
   * **Method:** _`DELETE`_
   * **URL Params:** `review_id=[integer], user_id=[integer]`
-  * **Return:**
+  * **Response Body:**
 ```javascript
   null
 ```
@@ -366,13 +365,13 @@ reviews = [
   * **Notes:** Route to handle getting a vote from a user for a photo
   * **Method:** _`GET`_
   * **URL Params:** `photo_id=[integer], user_id=[integer]`
-  * **Return:**
+  * **Response Body:**
 ```javascript
   {
-    photo_id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    voted_helpful: BOOLEAN NOT NULL,
-    voted_unhelpful: BOOLEAN NOT NULL
+    photo_id: integer,
+    user_id: integer,
+    voted_helpful: boolean,
+    voted_unhelpful: boolean
   }
 ```
 
@@ -383,24 +382,22 @@ reviews = [
   * **Request Body:**
 ```javascript
   {
-    photo_id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    voted_helpful: BOOLEAN NOT NULL,
-    voted_unhelpful: BOOLEAN NOT NULL
+    photo_id: integer,
+    user_id: integer,
+    voted_helpful: boolean,
+    voted_unhelpful: boolean
   }
 ```
 
 * **URL**: _/photo/:photo_id/user/:user_id/vote_
   * **Notes:** Route to handle updating a vote from a user for a photo
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `photo_id=[integer], user_id=[integer]`
   * **Request Body:**
 ```javascript
   {
-    photo_id: INT NOT NULL,
-    user_id: INT NOT NULL,
-    voted_helpful: BOOLEAN NOT NULL,
-    voted_unhelpful: BOOLEAN NOT NULL
+    voted_helpful: boolean,
+    voted_unhelpful: boolean
   }
 ```
 
@@ -408,7 +405,7 @@ reviews = [
   * **Notes:** Route to handle deleteing votes from a user for a photo
   * **Method:** _`DELETE`_
   * **URL Params:** `photo_id=[integer], user_id=[integer]`
-  * **Returns:**
+  * **Response Body:**
 ```javascript
   null
 ```
