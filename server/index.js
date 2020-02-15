@@ -10,7 +10,7 @@ const PORT = 3007;
 app.use(morgan('dev'));
 
 // Get all reviews
-app.get('/restaurant/:name/reviews', controller.getReviews);
+app.get('/restaurant/:id/reviews', controller.getReviews);
 
 // Create a review
 app.post('/restaurant/:restaurant_id/user/:user_id/review', controller.postReview);
