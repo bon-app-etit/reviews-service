@@ -49,6 +49,8 @@ CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
       id SERIAL PRIMARY KEY,
       review_id INTEGER REFERENCES reviews(id) NOT NULL,
       name VARCHAR NOT NULL,
+      business_position STRING NOT NULL,
+      business_avatar STRING NOT NULL,
       reply_date TIMESTAMP NOT NULL,
       reply_text VARCHAR NOT NULL
     )
