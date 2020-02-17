@@ -6,7 +6,8 @@ CREATE DATABASE BONAPPETIT;
 CREATE SCHEMA IF NOT EXISTS restaurant_reviews;
     CREATE TABLE users(
       id SERIAL PRIMARY KEY,
-      name VARCHAR(80) NOT NULL,
+      first_name VARCHAR(80) NOT NULL,
+      last_name text NOT NULL,
       profile_pic VARCHAR NOT NULL,
       profile_url VARCHAR NOT NULL,
       city VARCHAR NOT NULL,
