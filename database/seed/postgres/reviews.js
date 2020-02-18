@@ -10,14 +10,14 @@ const randomRestaurantId = () => Math.floor(Math.random() * Math.floor(3000000))
 
 const randomRating = () => Math.floor(Math.random() * Math.floor(5));
 
-const randomReview = () => Math.floor(Math.random() * Math.floor(10000000));
+const randomReviewId = () => Math.floor(Math.random() * Math.floor(10000000));
 
 const randomPreviousReviewId = () => {
   const chanceOfNoReview = Math.random();
   if (chanceOfNoReview < 0.9) {
     return null;
   }
-  return randomReview();
+  return randomReviewId();
 };
 
 const writeTenMillion = (writer, encoding, callback) => {
