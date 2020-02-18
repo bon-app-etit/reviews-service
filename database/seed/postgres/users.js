@@ -11,7 +11,7 @@ const randomEliteYear = () => eliteYears[Math.floor(Math.random() * Math.floor(2
 const writeUsers = fs.createWriteStream('usersPostGres.csv');
 writeUsers.write('id,first_name,last_name,profile_pic,profile_url,city,state,creation_date,friends_count,photos_count,elite_year\n', 'utf8');
 
-const writeTenMillion = (writer, encoding, callback) => {
+const writeFourMillion = (writer, encoding, callback) => {
   let i = 1000;
   let id = 0;
   const write = () => {
@@ -43,6 +43,6 @@ const writeTenMillion = (writer, encoding, callback) => {
   write();
 };
 
-writeTenMillion(writeUsers, 'utf-8', () => {
+writeFourMillion(writeUsers, 'utf-8', () => {
   writeUsers.end();
 });
