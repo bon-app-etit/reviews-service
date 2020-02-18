@@ -4,7 +4,7 @@ const fs = require('fs');
 const writeRestaurants = fs.createWriteStream('restaurantsPostGres.csv');
 writeRestaurants.write('id,name,address_1,address_2,city,state,zip,review_count,cuisine_type,phone_number,website\n', 'utf8');
 
-const writeTenMillion = (writer, encoding, callback) => {
+const writeThreeMillion = (writer, encoding, callback) => {
   let i = 1000;
   let id = 0;
   const write = () => {
@@ -36,6 +36,6 @@ const writeTenMillion = (writer, encoding, callback) => {
   write();
 };
 
-writeTenMillion(writeRestaurants, 'utf-8', () => {
+writeThreeMillion(writeRestaurants, 'utf-8', () => {
   writeRestaurants.end();
 });
