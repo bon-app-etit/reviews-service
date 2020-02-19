@@ -3,14 +3,14 @@ const fs = require('fs');
 const writeReviewsUsersVotes = fs.createWriteStream('reviewsUsersVotesPostGres.csv');
 writeReviewsUsersVotes.write('review_id,user_id,voted_cool,voted_funny,voted_useful\n', 'utf8');
 
-const randomUserId = () => Math.floor(Math.random() * Math.floor(3000000));
+const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
 
-const randomReviewId = () => Math.floor(Math.random() * Math.floor(10000000));
+const randomReviewId = () => Math.floor(Math.random() * (10000000)) + 1;
 
 const randomBoolean = () => Math.random() < 0.05;
 
 const writeOneMillion = (writer, encoding, callback) => {
-  let i = 1000;
+  let i = 1000000;
   const write = () => {
     let ok = true;
     do {
@@ -35,5 +35,6 @@ const writeOneMillion = (writer, encoding, callback) => {
 };
 
 writeOneMillion(writeReviewsUsersVotes, 'utf-8', () => {
+  console.log('data generation completed');
   writeReviewsUsersVotes.end();
 });
