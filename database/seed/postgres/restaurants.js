@@ -4,8 +4,8 @@ const fs = require('fs');
 const writeRestaurants = fs.createWriteStream('restaurantsPostGres.csv');
 writeRestaurants.write('id,name,address_1,address_2,city,state,zip,review_count,cuisine_type,phone_number,website\n', 'utf8');
 
-const writeThreeMillion = (writer, encoding, callback) => {
-  let i = 1000;
+const writeTwoMillion = (writer, encoding, callback) => {
+  let i = 2000000;
   let id = 0;
   const write = () => {
     let ok = true;
@@ -13,16 +13,16 @@ const writeThreeMillion = (writer, encoding, callback) => {
       i -= 1;
       id += 1;
       const name = faker.commerce.productName();
-      const address_1 = faker.address.streetAddress();
-      const address_2 = faker.address.secondaryAddress();
+      const address1 = faker.address.streetAddress();
+      const address2 = faker.address.secondaryAddress();
       const city = faker.address.city();
       const state = faker.address.state();
       const zip = faker.address.zipCode();
-      const review_count = faker.random.number();
-      const cuisine_type = faker.commerce.department();
-      const phone_number = faker.phone.phoneNumberFormat(0);
+      const reviewCount = faker.random.number();
+      const cuisineType = faker.commerce.department();
+      const phoneNumber = faker.phone.phoneNumberFormat(0);
       const website = faker.internet.url();
-      const data = `${id},${name},${address_1},${address_2},${city},${state},${zip},${review_count},${cuisine_type},${phone_number},${website}\n`;
+      const data = `${id},${name},${address1},${address2},${city},${state},${zip},${reviewCount},${cuisineType},${phoneNumber},${website}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -36,6 +36,7 @@ const writeThreeMillion = (writer, encoding, callback) => {
   write();
 };
 
-writeThreeMillion(writeRestaurants, 'utf-8', () => {
+writeTwoMillion(writeRestaurants, 'utf-8', () => {
+  console.log('data generation complete');
   writeRestaurants.end();
 });
