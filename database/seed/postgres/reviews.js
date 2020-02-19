@@ -4,37 +4,37 @@ const fs = require('fs');
 const writeReviews = fs.createWriteStream('reviewsPostGres.csv');
 writeReviews.write('id,user_id,restaurant_id,rating,review_date,review_text,previous_review\n', 'utf8');
 
-const randomUserId = () => Math.floor(Math.random() * Math.floor(4000000));
+const randomUserId = () => Math.floor(Math.random() * (3000000 + 1)) + 1;
 
-const randomRestaurantId = () => Math.floor(Math.random() * Math.floor(3000000));
+const randomRestaurantId = () => Math.floor(Math.random() * (2000000 + 1)) + 1;
 
 const randomRating = () => Math.floor(Math.random() * Math.floor(5));
 
-const randomReviewId = () => Math.floor(Math.random() * Math.floor(10000000));
+const randomReviewId = () => Math.floor(Math.random() * (10000000 + 1)) + 1;
 
 const randomPreviousReviewId = () => {
   const chanceOfNoReview = Math.random();
   if (chanceOfNoReview < 0.9) {
-    return null;
+    return '';
   }
   return randomReviewId();
 };
 
 const writeTenMillion = (writer, encoding, callback) => {
-  let i = 1000;
+  let i = 10000000;
   let id = 0;
   const write = () => {
     let ok = true;
     do {
       i -= 1;
       id += 1;
-      const user_id = randomUserId();
-      const restaurant_id = randomRestaurantId();
+      const userId = randomUserId();
+      const restaurantId = randomRestaurantId();
       const rating = randomRating();
-      const review_date = faker.date.past();
-      const review_text = faker.lorem.paragraph();
-      const previous_review = randomPreviousReviewId();
-      const data = `${id},${user_id},${restaurant_id},${rating},${review_date},${review_text},${previous_review}\n`;
+      const reviewDate = faker.date.past();
+      const reviewText = faker.lorem.paragraph();
+      const previousReview = randomPreviousReviewId();
+      const data = `${id},${userId},${restaurantId},${rating},${reviewDate},${reviewText},${previousReview}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -49,5 +49,6 @@ const writeTenMillion = (writer, encoding, callback) => {
 };
 
 writeTenMillion(writeReviews, 'utf-8', () => {
+  console.log('data generation complete');
   writeReviews.end();
 });
