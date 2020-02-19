@@ -67,7 +67,8 @@ reviews = [
 ```javascript
   {
     id: integer,
-    name: string,
+    first_name: string,
+    last_name: string,
     profile_pic: string,
     profile_url: string,
     city: string,
