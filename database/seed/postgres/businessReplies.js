@@ -7,7 +7,7 @@ writeBusinessReplies.write('id,review_id,name,business_position,business_avatar,
 const randomReviewId = () => Math.floor(Math.random() * Math.floor(10000000));
 
 const writeOneMillion = (writer, encoding, callback) => {
-  let i = 1000;
+  let i = 1000000;
   let id = 0;
   const write = () => {
     let ok = true;
@@ -35,5 +35,6 @@ const writeOneMillion = (writer, encoding, callback) => {
 };
 
 writeOneMillion(writeBusinessReplies, 'utf-8', () => {
+  console.log('data generation completed');
   writeBusinessReplies.end();
 });
