@@ -4,7 +4,18 @@
   "description": "Reviews Module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seedUsersPg": "node ./database/seed/postgres/users.js",
+    "seedRestaurantsPg": "node ./database/seed/postgres/restaurants.js",
+    "seedReviewsPg": "node ./database/seed/postgres/reviews.js",
+    "seedPhotosPg": "node ./database/seed/postgres/photos.js",
+    "seedBusinessRepliesPg": "node ./database/seed/postgres/businessReplies.js",
+    "seedReviewsUsersVotesPg": "node ./database/seed/postgres/reviewsUsersVotes.js",
+    "seedPhotosUsersVotesPg": "node ./database/seed/postgres/photosUsersVotes.js",
+    "seedRestaurantReviewsCql": "node ./database/seed/cql/restaurantReviews.js",
+    "seedUserByReviewCql": "node ./database/seed/cql/userByReview.js",
+    "seedBusinessReplyCql": "node ./database/seed/cql/businessReplyByReview.js",
+    "seedPhotosByReviewCql": "node ./database/seed/cql/photosByReview.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +30,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "faker": "^4.1.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.18.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
