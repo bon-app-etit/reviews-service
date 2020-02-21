@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const writePhotosUsersVotes = fs.createWriteStream('photosUsersVotesPostGres.csv');
-writePhotosUsersVotes.write('review_id,user_id,voted_helpful,voted_unhelpful\n', 'utf8');
+writePhotosUsersVotes.write('photo_id,user_id,voted_helpful,voted_unhelpful\n', 'utf8');
 
 const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
 

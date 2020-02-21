@@ -2,7 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 
 const writePhotos = fs.createWriteStream('photosPostGres.csv');
-writePhotos.write('id,user_id,review_id,photo_url,photo_text\n', 'utf8');
+writePhotos.write('photo_id,user_id,review_id,photo_url,photo_text\n', 'utf8');
 
 const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
 

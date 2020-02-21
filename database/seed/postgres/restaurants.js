@@ -2,7 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 
 const writeRestaurants = fs.createWriteStream('restaurantsPostGres.csv');
-writeRestaurants.write('id,name,address_1,address_2,city,state,zip,review_count,cuisine_type,phone_number,website\n', 'utf8');
+writeRestaurants.write('restaurant_id,name,address_1,address_2,city,state,zip,review_count,cuisine_type,phone_number,website\n', 'utf8');
 
 const writeTwoMillion = (writer, encoding, callback) => {
   let i = 2000000;

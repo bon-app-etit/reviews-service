@@ -12,7 +12,7 @@ const randomEliteYear = () => {
 };
 
 const writeUsers = fs.createWriteStream('usersPostGres.csv');
-writeUsers.write('id,first_name,last_name,profile_pic,profile_url,city,state,creation_date,friends_count,photos_count,elite_year\n', 'utf8');
+writeUsers.write('user_id,first_name,last_name,profile_pic,profile_url,city,state,creation_date,friends_count,photos_count,elite_year\n', 'utf8');
 
 const writeThreeMillion = (writer, encoding, callback) => {
   let i = 3000000;
