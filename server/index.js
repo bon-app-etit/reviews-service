@@ -21,8 +21,8 @@ app.patch('/review/:reviewId', controller.patchReview);
 // Delete a review
 app.delete('/review/:reviewId', controller.deleteReview);
 
-// // Create a user
-// app.post('/user', controller.postUser);
+// Create a user
+app.post('/user', controller.postUser);
 
 // Update a user
 app.patch('/user/:userId', controller.patchUser);

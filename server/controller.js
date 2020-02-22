@@ -37,31 +37,20 @@ module.exports = {
         console.log('controller error: deleteReview');
         res.status(500);
       } else {
+        res.status(200).end();
+      }
+    });
+  },
+  postUser: (req, res) => {
+    db.createUser(req, (err, results) => {
+      if (err) {
+        console.log('controller error: postUser');
+        res.status(500);
+      } else {
         res.status(201).end();
       }
     });
   },
-  // getUser: (req, res) => {
-  //   const { id } = req.params;
-  //   db.readUser(id, (err, user) => {
-  //     if (err) {
-  //       console.log('controller error: getUser');
-  //       res.status(500).end();
-  //     } else {
-  //       res.send(user);
-  //     }
-  //   });
-  // },
-  // postUser: (req, res) => {
-  //   db.createUser(req.body, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: postUser');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
   patchUser: (req, res) => {
     db.updateUser(req, (err, results) => {
       if (err) {

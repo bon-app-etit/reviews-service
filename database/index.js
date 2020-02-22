@@ -101,6 +101,34 @@ module.exports = {
           });
       });
   },
+  createUser: (req, callback) => {
+    const {
+      firstName, lastName, profilePic, profileUrl,
+      city, state, creationDate, friendsCount, photosCount,
+      eliteYear,
+    } = req.body;
+    const query = {
+      text: 'INSERT INTO users(user_id,first_name,last_name,profile_pic,profile_url,city,state,creation_date,friends_count,photos_count,elite_year) VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10);',
+      values: [
+        firstName, lastName, profilePic, profileUrl,
+        city, state, creationDate, friendsCount, photosCount, eliteYear,
+      ],
+    };
+    pool
+      .connect()
+      .then((client) => {
+        return client
+          .query(query)
+          .then((res) => {
+            client.release();
+            callback(null, res);
+          })
+          .catch((err) => {
+            client.release();
+            callback(err.stack);
+          });
+      });
+  },
   updateUser: (req, callback) => {
     const { userId } = req.params;
     const {
