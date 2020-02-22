@@ -31,17 +31,16 @@ module.exports = {
       }
     });
   },
-  // deleteReview: (req, res) => {
-  //   const { id } = req.params;
-  //   db.deleteReview(id, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: deleteReview');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
+  deleteReview: (req, res) => {
+    db.deleteReview(req, (err, results) => {
+      if (err) {
+        console.log('controller error: deleteReview');
+        res.status(500);
+      } else {
+        res.status(201).end();
+      }
+    });
+  },
   // getUser: (req, res) => {
   //   const { id } = req.params;
   //   db.readUser(id, (err, user) => {

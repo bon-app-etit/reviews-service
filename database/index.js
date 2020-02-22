@@ -80,6 +80,27 @@ module.exports = {
           });
       });
   },
+  deleteReview: (req, callback) => {
+    const { reviewId } = req.params;
+    const query = {
+      text: 'DELETE FROM reviews WHERE review_id = $1',
+      values: [reviewId],
+    };
+    pool
+      .connect()
+      .then((client) => {
+        return client
+          .query(query)
+          .then((res) => {
+            client.release();
+            callback(null, res);
+          })
+          .catch((err) => {
+            client.release();
+            callback(err.stack);
+          });
+      });
+  },
   updateUser: (req, callback) => {
     const { userId } = req.params;
     const {

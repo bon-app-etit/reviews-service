@@ -18,8 +18,8 @@ app.post('/restaurant/:restaurantId/user/:userId/review', controller.postReview)
 // Update a review
 app.patch('/review/:reviewId', controller.patchReview);
 
-// // Delete a review
-// app.delete('/review/:id', controller.deleteReview);
+// Delete a review
+app.delete('/review/:reviewId', controller.deleteReview);
 
 // // Create a user
 // app.post('/user', controller.postUser);
