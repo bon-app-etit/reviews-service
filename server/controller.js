@@ -81,4 +81,14 @@ module.exports = {
       }
     });
   },
+  postReviewVotes: (req, res) => {
+    db.addReviewVotes(req, (err, results) => {
+      if (err) {
+        console.log('controller error: addReviewVotes');
+        res.status(500);
+      } else {
+        res.status(201).end();
+      }
+    });
+  },
 };

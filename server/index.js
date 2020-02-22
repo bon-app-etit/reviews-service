@@ -48,8 +48,8 @@ app.delete('/photo/:photoId', controller.deleteReviewPhoto);
 // // Delete a business reply from a review
 // app.delete('/business_reply/:id', controller.deleteBusinessReply);
 
-// // Add votes from a user for a review
-// app.post('/review/:review_id/user/:user_id/votes', controller.addReviewVotes);
+// Add votes from a user for a review
+app.post('/review/:reviewId/user/:userId/votes', controller.postReviewVotes);
 
 // // Update votes from a user for a review
 // app.put('/review/:review_id/user/:user_id/votes', controller.putReviewVotes);

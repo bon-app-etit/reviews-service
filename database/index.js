@@ -199,4 +199,26 @@ module.exports = {
           });
       });
   },
+  addReviewVotes: (req, callback) => {
+    const { reviewId, userId } = req.params;
+    const { votedCool, votedFunny, votedUseful } = req.body;
+    const query = {
+      text: 'INSERT INTO reviews_users_votes(review_id,user_id,voted_cool,voted_funny,voted_useful) VALUES ($1, $2, $3, $4, $5);',
+      values: [reviewId, userId, votedCool, votedFunny, votedUseful],
+    };
+    pool
+      .connect()
+      .then((client) => {
+        return client
+          .query(query)
+          .then((res) => {
+            client.release();
+            callback(null, res);
+          })
+          .catch((err) => {
+            client.release();
+            callback(err.stack);
+          });
+      });
+  },
 };
