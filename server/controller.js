@@ -21,17 +21,16 @@ module.exports = {
       }
     });
   },
-  // putReview: (req, res) => {
-  //   const { id } = req.params;
-  //   db.updateReview(id, req.body, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: putReview');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
+  patchReview: (req, res) => {
+    db.updateReview(req, (err, results) => {
+      if (err) {
+        console.log('controller error: patchReview');
+        res.status(500);
+      } else {
+        res.status(200).end();
+      }
+    });
+  },
   // deleteReview: (req, res) => {
   //   const { id } = req.params;
   //   db.deleteReview(id, (err, results) => {

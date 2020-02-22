@@ -58,6 +58,28 @@ module.exports = {
           });
       });
   },
+  updateReview: (req, callback) => {
+    const { reviewId } = req.params;
+    const { rating, reviewDate, reviewText } = req.body;
+    const query = {
+      text: 'UPDATE reviews SET rating = $1, review_date = $2, review_text = $3 WHERE review_id = $4;',
+      values: [rating, reviewDate, reviewText, reviewId],
+    };
+    pool
+      .connect()
+      .then((client) => {
+        return client
+          .query(query)
+          .then((res) => {
+            client.release();
+            callback(null, res);
+          })
+          .catch((err) => {
+            client.release();
+            callback(err.stack);
+          });
+      });
+  },
   updateUser: (req, callback) => {
     const { userId } = req.params;
     const {

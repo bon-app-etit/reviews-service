@@ -15,8 +15,8 @@ app.get('/restaurant/:id/reviews', controller.getReviews);
 // Create a review
 app.post('/restaurant/:restaurantId/user/:userId/review', controller.postReview);
 
-// // Update a review
-// app.put('/review/:id', controller.putReview);
+// Update a review
+app.patch('/review/:reviewId', controller.patchReview);
 
 // // Delete a review
 // app.delete('/review/:id', controller.deleteReview);
