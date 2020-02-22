@@ -14,7 +14,7 @@ pool.on('error', (err, client) => {
 module.exports = {
   readAllReviews: (restaurantId, callback) => {
     const query = {
-      text: 'SELECT * FROM reviews INNER JOIN users ON users.user_id = reviews.user_id LEFT JOIN photos ON photos.review_id = reviews.review_id LEFT JOIN reviews_users_votes ON reviews_users_votes.review_id = reviews.review_id LEFT JOIN photos_users_votes ON photos_users_votes.photo_id = photos.photo_id LEFT JOIN business_replies ON business_replies.review_id = reviews.review_id WHERE reviews.restaurant_id = $1;',
+      text: 'SELECT reviews.review_id, reviews.rating, reviews.review_date, reviews.review_text, reviews.previous_review, users.first_name, users.last_name, users.user_id, users.profile_pic, users.profile_url, users.city, users.state, users.creation_date, users.friends_count, users.photos_count, users.elite_year, photo_id, photos.photo_url, photos.photo_text, business_replies.business_reply_id, business_replies.business_position, business_replies.business_avatar, business_replies.reply_date, business_replies.reply_text FROM reviews INNER JOIN users ON users.user_id = reviews.user_id LEFT JOIN photos ON photos.review_id = reviews.review_id LEFT JOIN business_replies ON business_replies.review_id = reviews.review_id WHERE reviews.restaurant_id = $1;',
       values: [restaurantId],
     };
     pool
