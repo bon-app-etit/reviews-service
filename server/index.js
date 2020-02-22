@@ -36,8 +36,8 @@ app.patch('/user/:userId', controller.patchUser);
 // // Update a photo for a review
 // app.put('/photo/:id', controller.putReviewPhoto);
 
-// // Delete a photo from a review
-// app.delete('/photo/:id', controller.deleteReviewPhoto);
+// Delete a photo from a review
+app.delete('/photo/:photoId', controller.deleteReviewPhoto);
 
 // // Add a business reply for a review
 // app.post('/review/:id/business_reply', controller.postBusinessReply);

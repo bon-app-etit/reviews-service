@@ -67,10 +67,10 @@ module.exports = {
   patchUser: (req, res) => {
     db.updateUser(req, (err, results) => {
       if (err) {
-        console.log('controller error: putUser');
+        console.log('controller error: patchUser');
         res.status(500);
       } else {
-        res.status(201).end();
+        res.status(200).end();
       }
     });
   },
@@ -85,4 +85,14 @@ module.exports = {
   //     }
   //   });
   // },
+  deleteReviewPhoto: (req, res) => {
+    db.deletePhoto(req, (err, results) => {
+      if (err) {
+        console.log('controller error: deleteReviewPhoto');
+        res.status(500);
+      } else {
+        res.status(200).end();
+      }
+    });
+  },
 };
