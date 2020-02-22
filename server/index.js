@@ -27,8 +27,8 @@ app.post('/user', controller.postUser);
 // Update a user
 app.patch('/user/:userId', controller.patchUser);
 
-// // Delete a user
-// app.delete('/user/:id', controller.deleteUser);
+// Delete a user
+app.delete('/user/:userId', controller.deleteUser);
 
 // // Add a photo to a review
 // app.post('/review/:id/photo', controller.postReviewPhoto);
@@ -47,15 +47,6 @@ app.delete('/photo/:photoId', controller.deleteReviewPhoto);
 
 // // Delete a business reply from a review
 // app.delete('/business_reply/:id', controller.deleteBusinessReply);
-
-// // Create a restaurant
-// app.post('/restaurant', controller.postRestaurant);
-
-// // Update a restaurant
-// app.put('/restaurant/:id', controller.putRestaurant);
-
-// // Delete a restaurant
-// app.delete('/restaurant/:id', controller.deleteRestaurant);
 
 // // Add votes from a user for a review
 // app.post('/review/:review_id/user/:user_id/votes', controller.addReviewVotes);

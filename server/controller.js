@@ -61,17 +61,16 @@ module.exports = {
       }
     });
   },
-  // deleteUser: (req, res) => {
-  //   const { id } = req.params;
-  //   db.deleteUser(id, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: deleteUser');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
+  deleteUser: (req, res) => {
+    db.deleteUser(req, (err, results) => {
+      if (err) {
+        console.log('controller error: deleteUser');
+        res.status(500);
+      } else {
+        res.status(200).end();
+      }
+    });
+  },
   deleteReviewPhoto: (req, res) => {
     db.deletePhoto(req, (err, results) => {
       if (err) {
