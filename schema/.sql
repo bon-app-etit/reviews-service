@@ -32,7 +32,7 @@ CREATE DATABASE BONAPPETIT;
     );
     CREATE TABLE reviews(
       review_id SERIAL PRIMARY KEY,
-      user_id INTEGER REFERENCES users(user_id) NOT NULL,
+      user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
       restaurant_id INTEGER REFERENCES restaurants(restaurant_id) NOT NULL,
       rating INTEGER NOT NULL,
       review_date VARCHAR NOT NULL,
@@ -41,14 +41,14 @@ CREATE DATABASE BONAPPETIT;
     );
     CREATE TABLE photos(
       photo_id SERIAL PRIMARY KEY,
-      user_id INTEGER REFERENCES users(user_id) NOT NULL,
-      review_id INTEGER REFERENCES reviews(review_id) NOT NULL,
+      user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+      review_id INTEGER REFERENCES reviews(review_id) ON DELETE CASCADE NOT NULL,
       photo_url VARCHAR NOT NULL,
       photo_text VARCHAR
     );
     CREATE TABLE business_replies(
       business_reply_id SERIAL PRIMARY KEY,
-      review_id INTEGER REFERENCES reviews(review_id) NOT NULL,
+      review_id INTEGER REFERENCES reviews(review_id) ON DELETE CASCADE NOT NULL,
       name VARCHAR NOT NULL,
       business_position TEXT NOT NULL,
       business_avatar TEXT NOT NULL,
@@ -56,15 +56,15 @@ CREATE DATABASE BONAPPETIT;
       reply_text VARCHAR NOT NULL
     );
     CREATE TABLE reviews_users_votes(
-      review_id INTEGER REFERENCES reviews(review_id) NOT NULL,
-      user_id INTEGER REFERENCES users(user_id) NOT NULL,
+      review_id INTEGER REFERENCES reviews(review_id) ON DELETE CASCADE NOT NULL,
+      user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
       voted_cool BOOLEAN NOT NULL,
       voted_funny BOOLEAN NOT NULL,
       voted_useful BOOLEAN NOT NULL
     );
     CREATE TABLE photos_users_votes(
-      photo_id INTEGER REFERENCES photos(photo_id),
-      user_id INTEGER REFERENCES users(user_id),
+      photo_id INTEGER REFERENCES photos(photo_id) ON DELETE CASCADE NOT NULL,
+      user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
       voted_helpful BOOLEAN NOT NULL,
       voted_unhelpful BOOLEAN NOT NULL
     );
