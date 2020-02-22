@@ -58,4 +58,29 @@ module.exports = {
           });
       });
   },
+  updateUser: (req, callback) => {
+    const { userId } = req.params;
+    const {
+      firstName, lastName, profilePic,
+      profileUrl, city, state, friendsCount, photosCount, eliteYear,
+    } = req.body;
+    const query = {
+      text: 'UPDATE users SET first_name = $1, last_name = $2, profile_pic = $3, profile_url = $4, city = $5, state = $6, friends_count = $7, photos_count = $8, elite_year = $9 WHERE user_id = $10;',
+      values: [firstName, lastName, profilePic, profileUrl, city, state, friendsCount, photosCount, eliteYear, userId],
+    };
+    pool
+      .connect()
+      .then((client) => {
+        return client
+          .query(query)
+          .then((res) => {
+            client.release();
+            callback(null, res);
+          })
+          .catch((err) => {
+            client.release();
+            callback(err.stack);
+          });
+      });
+  },
 };

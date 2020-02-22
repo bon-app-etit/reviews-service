@@ -64,17 +64,16 @@ module.exports = {
   //     }
   //   });
   // },
-  // putUser: (req, res) => {
-  //   const { id } = req.params;
-  //   db.updateUser(id, req.body, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: putUser');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
+  patchUser: (req, res) => {
+    db.updateUser(req, (err, results) => {
+      if (err) {
+        console.log('controller error: putUser');
+        res.status(500);
+      } else {
+        res.status(201).end();
+      }
+    });
+  },
   // deleteUser: (req, res) => {
   //   const { id } = req.params;
   //   db.deleteUser(id, (err, results) => {

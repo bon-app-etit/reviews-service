@@ -24,8 +24,8 @@ app.post('/restaurant/:restaurantId/user/:userId/review', controller.postReview)
 // // Create a user
 // app.post('/user', controller.postUser);
 
-// // Update a user
-// app.put('/user/:id', controller.putUser);
+// Update a user
+app.patch('/user/:userId', controller.patchUser);
 
 // // Delete a user
 // app.delete('/user/:id', controller.deleteUser);
