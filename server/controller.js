@@ -11,17 +11,16 @@ module.exports = {
       }
     });
   },
-  // postReview: (req, res) => {
-  //   const { name } = req.parmas;
-  //   db.createReview(name, req.body, (err, results) => {
-  //     if (err) {
-  //       console.log('controller error: postReview');
-  //       res.status(500);
-  //     } else {
-  //       res.status(201);
-  //     }
-  //   });
-  // },
+  postReview: (req, res) => {
+    db.addReview(req, (err, results) => {
+      if (err) {
+        console.log('controller error: postReview');
+        res.status(500);
+      } else {
+        res.status(201).end();
+      }
+    });
+  },
   // putReview: (req, res) => {
   //   const { id } = req.params;
   //   db.updateReview(id, req.body, (err, results) => {

@@ -12,8 +12,8 @@ app.use(morgan('dev'));
 // Get all reviews
 app.get('/restaurant/:id/reviews', controller.getReviews);
 
-// // Create a review
-// app.post('/restaurant/:restaurant_id/user/:user_id/review', controller.postReview);
+// Create a review
+app.post('/restaurant/:restaurantId/user/:userId/review', controller.postReview);
 
 // // Update a review
 // app.put('/review/:id', controller.putReview);
