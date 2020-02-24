@@ -101,21 +101,20 @@ reviews = [
 
 * **URL**: _/user/:id_
   * **Notes:** Route to handle updating a given user
-  * **Method:** _`PUT`_
+  * **Method:** _`PATCH`_
   * **URL Params:** `id=[integer]`
   * **Request Body:**
 ```javascript
   {
-    id: integer,
-    name: string,
-    profile_pic: string,
-    profile_url: string,
+    firstName: string,
+    lastName: string,
+    profilePic: string,
+    profileUrl: string,
     city: string,
     state: string,
-    creation_date: string,
-    friends_count: integer,
-    photos_count: integer,
-    elite_year: integer
+    friendsCount: integer,
+    photosCount: integer,
+    eliteYear: integer
   }
 ```
 

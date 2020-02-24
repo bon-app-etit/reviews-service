@@ -7,11 +7,13 @@ module.exports = {
       if (err) {
         res.status(500).end();
       } else {
+        res.status(200);
         res.send(reviews);
       }
     });
   },
   postReview: (req, res) => {
+    console.log(req.body);
     db.addReview(req, (err, results) => {
       if (err) {
         console.log('controller error: postReview');
