@@ -69,4 +69,6 @@ app.post('/review/:reviewId/user/:userId/votes', controller.postReviewVotes);
 // app.delete('/photo/:photo_id/user/:user_id/votes', controller.deletePhotoVotes);
 
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+server.keepAliveTimeout = 45000;
+server.headersTimeout = 50000;

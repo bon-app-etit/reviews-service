@@ -37,7 +37,7 @@ CREATE DATABASE BONAPPETIT;
       rating INTEGER NOT NULL,
       review_date VARCHAR NOT NULL,
       review_text VARCHAR NOT NULL,
-      previous_review INTEGER REFERENCES reviews(review_id)
+      previous_review INTEGER REFERENCES reviews(review_id) ON DELETE CASCADE
     );
     CREATE TABLE photos(
       photo_id SERIAL PRIMARY KEY,
