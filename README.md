@@ -1,4 +1,42 @@
-# reviews-service
+# Restaurant Reviews Service
+
+This is a module that provides reviews, ratings, photos and business comments for restaurants. 
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+```
+Node 6 or above
+postgreSQL
+```
+
+### Installing
+
+Install node modules and dependencies
+```
+npm install
+```
+
+Start the server
+```
+npm start 
+```
+
+Access the server at http://localhost:3007/
+
+### Built With
+* Webpack 4
+* Babel 7
+* Node.js
+* Express.js
+* postgreSQL
+* NGINX
+* New Relic
+* Loader.io
+* k6
 
 ## API Documentation
 
