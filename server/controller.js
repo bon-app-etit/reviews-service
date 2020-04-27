@@ -1,89 +1,95 @@
+const db = require('../database/index.js');
 
 module.exports = {
   getReviews: (req, res) => {
     const { id } = req.params;
     db.readAllReviews(id, (err, reviews) => {
       if (err) {
-        console.log('controller error: getReviews');
         res.status(500).end();
       } else {
+        res.status(200);
         res.send(reviews);
       }
     });
   },
   postReview: (req, res) => {
-    const { name } = req.parmas;
-    db.createReview(name, req.body, (err, results) => {
+    console.log(req.body);
+    db.addReview(req, (err, results) => {
       if (err) {
         console.log('controller error: postReview');
         res.status(500);
       } else {
-        res.status(201);
+        res.status(201).end();
       }
     });
   },
-  putReview: (req, res) => {
-    const { id } = req.params;
-    db.updateReview(id, req.body, (err, results) => {
+  patchReview: (req, res) => {
+    db.updateReview(req, (err, results) => {
       if (err) {
-        console.log('controller error: putReview');
+        console.log('controller error: patchReview');
         res.status(500);
       } else {
-        res.status(201);
+        res.status(200).end();
       }
     });
   },
   deleteReview: (req, res) => {
-    const { id } = req.params;
-    db.deleteReview(id, (err, results) => {
+    db.deleteReview(req, (err, results) => {
       if (err) {
         console.log('controller error: deleteReview');
         res.status(500);
       } else {
-        res.status(201);
-      }
-    });
-  },
-  getUser: (req, res) => {
-    const { id } = req.params;
-    db.readUser(id, (err, user) => {
-      if (err) {
-        console.log('controller error: getUser');
-        res.status(500).end();
-      } else {
-        res.send(user);
+        res.status(200).end();
       }
     });
   },
   postUser: (req, res) => {
-    db.createUser(req.body, (err, results) => {
+    db.createUser(req, (err, results) => {
       if (err) {
         console.log('controller error: postUser');
         res.status(500);
       } else {
-        res.status(201);
+        res.status(201).end();
       }
     });
   },
-  putUser: (req, res) => {
-    const { id } = req.params;
-    db.updateUser(id, req.body, (err, results) => {
+  patchUser: (req, res) => {
+    db.updateUser(req, (err, results) => {
       if (err) {
-        console.log('controller error: putUser');
+        console.log('controller error: patchUser');
         res.status(500);
       } else {
-        res.status(201);
+        res.status(200).end();
       }
     });
   },
   deleteUser: (req, res) => {
-    const { id } = req.params;
-    db.deleteUser(id, (err, results) => {
+    db.deleteUser(req, (err, results) => {
       if (err) {
         console.log('controller error: deleteUser');
         res.status(500);
       } else {
-        res.status(201);
+        res.status(200).end();
+      }
+    });
+  },
+  deleteReviewPhoto: (req, res) => {
+    db.deletePhoto(req, (err, results) => {
+      if (err) {
+        console.log('controller error: deleteReviewPhoto');
+        res.status(500);
+      } else {
+        res.status(200).end();
+      }
+    });
+  },
+  postReviewVotes: (req, res) => {
+    db.addReviewVotes(req, (err, results) => {
+      if (err) {
+        console.log('controller error: addReviewVotes');
+        res.status(500);
+      } else {
+        res.status(201).end();
       }
     });
   },

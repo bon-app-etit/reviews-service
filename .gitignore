@@ -1,1 +1,14 @@
 node_modules
+
+Business_RepliesCql.csv
+Business_repliesPostGres.csv
+photosByReviewCql.csv
+photosPostGres.csv
+photosUsersVotesPostGres.csv
+restaurantReviewsCql.csv
+restaurantsPostGres.csv
+reviewsPostGres.csv
+reviewsUsersVotesPostGres.csv
+userByReviewCql.csv
+usersPostGres.csv
+newrelic.js

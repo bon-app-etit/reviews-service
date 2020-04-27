@@ -1,8 +1,8 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const writeReviews = fs.createWriteStream('reviewsPostGres.csv');
-writeReviews.write('review_id,user_id,restaurant_id,rating,review_date,review_text,previous_review\n', 'utf8');
+const writeReviews = fs.createWriteStream('restaurantReviewsCql.csv');
+writeReviews.write('restaurant_id,review_id,user_id,rating,review_date,review_text,previous_review\n', 'utf8');
 
 const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
 
@@ -22,19 +22,19 @@ const randomPreviousReviewId = () => {
 
 const writeTenMillion = (writer, encoding, callback) => {
   let i = 10000000;
-  let id = 0;
+
   const write = () => {
     let ok = true;
     do {
       i -= 1;
-      id += 1;
-      const userId = randomUserId();
       const restaurantId = randomRestaurantId();
+      const reviewId = randomReviewId();
+      const userId = randomUserId();
       const rating = randomRating();
       const reviewDate = faker.date.past();
       const reviewText = faker.lorem.paragraph();
       const previousReview = randomPreviousReviewId();
-      const data = `${id},${userId},${restaurantId},${rating},${reviewDate},${reviewText},${previousReview}\n`;
+      const data = `${restaurantId},${reviewId},${userId},${rating},${reviewDate},${reviewText},${previousReview}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {

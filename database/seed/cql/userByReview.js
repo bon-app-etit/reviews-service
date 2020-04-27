@@ -1,6 +1,13 @@
 const faker = require('faker');
 const fs = require('fs');
 
+const writeUsers = fs.createWriteStream('userByReviewCql.csv');
+writeUsers.write('review_id,user_id,user_firstName,user_lastName,user_profile_pic,user_profile_url,user_city,user_state,user_creation_date,user_friends_count,user_photos_count,user_elite_year\n', 'utf8');
+
+const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
+
+const randomReviewId = () => Math.floor(Math.random() * (10000000)) + 1;
+
 const eliteYears = [2018, 2019, 2020];
 
 const randomEliteYear = () => {
@@ -11,17 +18,15 @@ const randomEliteYear = () => {
   return '';
 };
 
-const writeUsers = fs.createWriteStream('usersPostGres.csv');
-writeUsers.write('user_id,first_name,last_name,profile_pic,profile_url,city,state,creation_date,friends_count,photos_count,elite_year\n', 'utf8');
-
 const writeThreeMillion = (writer, encoding, callback) => {
   let i = 3000000;
-  let id = 0;
+
   const write = () => {
     let ok = true;
     do {
       i -= 1;
-      id += 1;
+      const reviewId = randomReviewId();
+      const userId = randomUserId();
       const firstName = faker.name.firstName();
       const lastName = faker.name.lastName();
       const profilePic = faker.image.avatar();
@@ -32,7 +37,7 @@ const writeThreeMillion = (writer, encoding, callback) => {
       const friendsCount = faker.random.number();
       const photosCount = faker.random.number();
       const eliteYear = randomEliteYear();
-      const data = `${id},${firstName},${lastName},${profilePic},${profileUrl},${city},${state},${creationDate},${friendsCount},${photosCount},${eliteYear}\n`;
+      const data = `${reviewId},${userId},${firstName},${lastName},${profilePic},${profileUrl},${city},${state},${creationDate},${friendsCount},${photosCount},${eliteYear}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -47,5 +52,6 @@ const writeThreeMillion = (writer, encoding, callback) => {
 };
 
 writeThreeMillion(writeUsers, 'utf-8', () => {
+  console.log('data generation complete');
   writeUsers.end();
 });

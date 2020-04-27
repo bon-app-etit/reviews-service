@@ -1,7 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 
-const writeBusinessReplies = fs.createWriteStream('Business_RepliesPostGres.csv');
+const writeBusinessReplies = fs.createWriteStream('Business_RepliesCql.csv');
 writeBusinessReplies.write('business_reply_id,review_id,name,business_position,business_avatar,reply_date,reply_text\n', 'utf8');
 
 const randomReviewId = () => Math.floor(Math.random() * Math.floor(10000000));

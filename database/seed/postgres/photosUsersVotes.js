@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const writeReviewsUsersVotes = fs.createWriteStream('reviewsUsersVotesPostGres.csv');
-writeReviewsUsersVotes.write('review_id,user_id,voted_cool,voted_funny,voted_useful\n', 'utf8');
+const writePhotosUsersVotes = fs.createWriteStream('photosUsersVotesPostGres.csv');
+writePhotosUsersVotes.write('photo_id,user_id,voted_helpful,voted_unhelpful\n', 'utf8');
 
 const randomUserId = () => Math.floor(Math.random() * (3000000)) + 1;
 
-const randomReviewId = () => Math.floor(Math.random() * (10000000)) + 1;
+const randomPhotoId = () => Math.floor(Math.random() * (3000000)) + 1;
 
 const randomBoolean = () => Math.random() < 0.05;
 
@@ -15,12 +15,11 @@ const writeOneMillion = (writer, encoding, callback) => {
     let ok = true;
     do {
       i -= 1;
-      const reviewId = randomReviewId();
+      const photoId = randomPhotoId();
       const userId = randomUserId();
-      const votedCool = randomBoolean();
-      const votedFunny = randomBoolean();
-      const votedUseful = randomBoolean();
-      const data = `${reviewId},${userId},${votedCool},${votedFunny},${votedUseful}\n`;
+      const votedHelpful = randomBoolean();
+      const votedUnhelpful = randomBoolean();
+      const data = `${photoId},${userId},${votedHelpful},${votedUnhelpful}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -34,7 +33,7 @@ const writeOneMillion = (writer, encoding, callback) => {
   write();
 };
 
-writeOneMillion(writeReviewsUsersVotes, 'utf-8', () => {
+writeOneMillion(writePhotosUsersVotes, 'utf-8', () => {
   console.log('data generation completed');
-  writeReviewsUsersVotes.end();
+  writePhotosUsersVotes.end();
 });
